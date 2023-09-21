@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="index.css">
+  <title>login Activity</title>
+</head>
+<script>
+    function logout(){
+        let response = confirm("Are you sure you want to log out?");
+        if (response){
+            window.close();
+            window.open('index.html');
+        }
+    }
+
+    function performCalculation(operation) {
+    let num1Input = document.getElementById('num1');
+    let num2Input = document.getElementById('num2');
+    let resultElement = document.getElementById('result');
+
+    let num1 = parseFloat(num1Input.value);
+    let num2 = parseFloat(num2Input.value);
+
+    if (isNaN(num1) || isNaN(num2)) {
+        resultElement.textContent = 'Input is invalid. Please try again.';
+        return;
+    }
+
+    let result;
+
+    if (operation === 'add') {
+        result = num1 + num2;
+    } else if (operation === 'subtract') {
+        result = num1 - num2;
+    } else if (operation === 'multiply') {
+        result = num1 * num2;
+    } else if (operation === 'divide') {
+        if (num2 === 0) {
+            resultElement.textContent = 'Division by zero is not allowed.';
+            return;
+        }
+        result = num1 / num2;
+    }
+
+    resultElement.textContent = `Result: ${result}`;
+}
+
+</script>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>Calculator</h2>
+                    <div class="inputbox">
+                        <input type="number" id="num1" required>
+                        <label for="">Number 1</label>
+                    </div>
+                    <div class="inputbox">
+                        <input type="number" id="num2" required>
+                        <label for="">Number 2</label>
+                    </div>
+                    <div class="result" id="result"></div>
+                    <div class="operations">
+                        <button type="button" onclick="performCalculation('add')">Add</button>
+                        <button type="button" onclick="performCalculation('subtract')">Subtract</button>
+                        <button type="button" onclick="performCalculation('multiply')">Multiply</button>
+                        <button type="button" onclick="performCalculation('divide')">Divide</button>
+                    </div>
+                    <div class="forget">
+                        <label for=""><a href="#">   </a></label>
+                    </div>
+                    <button type="button" onclick="logout()">Log out</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
